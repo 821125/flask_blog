@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+}
+
+.container {
+    background-color: bisque;
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-rows: 20px 100px 1fr 50px auto;
+}
+
+.header {
+    height: 100px;
+    background-color: chocolate;
+    color: bisque;
+}
+
+.header > h1 {
+    padding: 20px;
+}
+
+.greeting {
+    grid-area: 2 / 2;
+}
+
+.image {
+    grid-area: 3 / 2;
+}
+
+.image > img {
+    width: 100%;
+}
+
+.information {
+    grid-area: 5 / 2;
+}
+
+.information > p {
+    margin-bottom: 50px;
+}
+
+.footer {
+    height: 100px;
+    background-color: chocolate;
+}

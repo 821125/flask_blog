@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    {% if title %}
+        <title>FlaskBlog - {{ title }}</title>
+    {% else %}
+        <title>FlaskBlog</title>
+    {% endif %}
+</head>
+
+<body>
+    
+    <header>
+        <div class="header">
+            <h1>FlaskBlog</h1>
+            {% if current_user.is_authenticated %}
+                <h4>Hello, {{ current_user.username }}!</h4>
+            {% endif %}
+        </div>
+    </header>
+    
+    <main>
+        <div class="container">
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div>
+                  {{ message }}
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+          
+          {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer"></div>
+    </footer>
+
+</body>
+</html>
