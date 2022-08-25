@@ -1,44 +1,6 @@
 {% extends "layout.html" %}
 
-{% block head %}
-  <style>
-    .container{
-      margin-bottom: 0.8rem;
-    }
-
-    .card{
-      border-radius: 25px;
-      /* border-top-right-radius: 25px;
-      border-bottom-left-radius: 25px; */
-      background-color:  white; 
-      box-shadow: 10px 15px 10px #4a4e69;
-      width: 92%;
-    }
-    
-    .card-title{
-      margin-bottom: 0 !important;
-      font-family: 'Bebas Neue', cursive;
-    }
-
-    a{
-      color: #003049 !important;
-      text-decoration: none;
-    }
-
-    small{
-      color: lightslategray;
-    }
-
-    p{
-      color: rgb(43, 37, 37);
-    }
-
-    /* i{
-      padding: 0px 7px;
-      cursor: pointer;
-    } */
-  </style>
-{% endblock head %}
+{% block head %}{% endblock head %}
 
 {% block content %}
     <h1 class="mb-3">Post published by {{ user.username }} ({{ posts.total }})</h1>
@@ -58,10 +20,6 @@
           <br>
           <p class="card-text">{{ post.content }}</p>
         </div>
-        <!-- <div class="card-footer" style="font-size: 20px;">
-          <i class="fa fa-heart-o"></i>
-          <i class="fa fa-bookmark-o"></i>
-        </div> -->
       </div>
     </div>
     {% endfor %}

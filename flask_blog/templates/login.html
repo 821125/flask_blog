@@ -1,10 +1,10 @@
 {% extends "layout.html" %}
 {% block content %}
-    <div class="content-section" style="box-shadow: 10px 15px 10px #4a4e69;">
+    <div class="content-section">
         <form method="POST" action="">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Авторизация</legend>
+                <legend class="border-bottom mb-4">Authorization</legend>
                 <div class="form-group">
                     {{ form.email.label(class="form-control-label") }}
                     {% if form.email.errors %}
@@ -43,7 +43,7 @@
 
             </div>
             <small style="font-size: 15px; font-weight: 500;">
-                Нужен аккаунт? <a class="ml-2" href="{{ url_for('users.register') }}">Зарегистрируйтесь</a>
+                <a class="ml-2" href="{{ url_for('users.register') }}">Registration</a>
             </small>
         </form>
     </div>
