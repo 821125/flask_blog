@@ -9,7 +9,7 @@ login_manager = LoginManager()
 bcrypt = Bcrypt()
 
 
-def create_app():
+def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(Config)
 
@@ -19,7 +19,9 @@ def create_app():
 
     from flask_blog.main.routes import main
     from flask_blog.users.routes import users
+    from flask_blog.posts.routes import posts
     app.register_blueprint(main)
     app.register_blueprint(users)
+    app.register_blueprint(posts)
 
     return app

@@ -33,10 +33,14 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
-        if user and bcrypt.check_password_hash(user.password, form.password.data):
+        if user and bcrypt.check_password_hash(user.password,
+                                               form.password.data):
             login_user(user, remember=form.remember.data)
 
-            return redirect(url_for('main.home'))
+            next_page = request.args.get('next')
+            return redirect(next_page) if next_page \
+                else redirect(url_for('posts.allpost'))
+
         else:
             flash('Sing in failed. Please check the password or email', 'attention')
     return render_template('login.html', title='Authentication', form=form)
@@ -60,9 +64,7 @@ def account():
         form.email.data = current_user.email
         page = request.args.get('page', 1, type=int)
         user = User.query.filter_by(username=form.username.data).first_or_404()
-        posts = Post.query.filter_by(author=user) \
-            .order_by(Post.date_posted.desc()) \
-            .paginate(page=page, per_page=5)
+        posts = Post.query.filter_by(author=user).order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
     return render_template('account.html', title='Account', image_file=image_file, form=form, posts=posts, user=user)
 
@@ -71,3 +73,11 @@ def account():
 def logout():
     logout_user()
     return redirect(url_for('main.home'))
+
+
+@users.route("/user/<string:username>")
+def user_posts(username):
+    page = request.args.get('page', 1, type=int)
+    user = User.query.filter_by(username=username).first_or_404()
+    posts = Post.query.filter_by(author=user).order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
+    return render_template('user_posts.html', posts=posts, user=user)

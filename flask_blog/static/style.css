@@ -2,6 +2,10 @@
     margin: 0;
 }
 
+body {
+    background-color: bisque;
+}
+
 a {
     color: white;
     text-decoration: none;
@@ -15,10 +19,9 @@ a {
 
 .inner-container {
     background-color: bisque;
-    display: grid;
-    grid-template-columns: 1fr 4fr 1fr;
-    grid-template-rows: auto 1fr auto;
-    row-gap: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .header > h1 {
@@ -27,42 +30,4 @@ a {
 
 nav {
     margin: 20px 0 0 20px;
-}
-
-.greeting {
-    grid-area: 1 / 2;
-}
-
-.greeting > h1 {
-    padding: 20px;
-}
-
-.image {
-    grid-area: 2 / 2;
-}
-
-.image > img {
-    width: 100%;
-}
-
-.information {
-    grid-area: 3 / 2;
-}
-
-.information > p {
-    margin-bottom: 50px;
-}
-
-.footer {
-    min-height: 15vh;
-    background-color: chocolate;
-}
-
-.inner-forms {
-    margin: 50px;
-    grid-area: 1 / 2 / 4 / 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 70vh;
 }
